@@ -1,0 +1,137 @@
+<!doctype html>
+<head>
+  <meta charset="utf-8">
+
+  <title>My Parse App</title>
+  <meta name="description" content="My Parse App">
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.2.19.min.js"></script>
+</head>
+
+<body>
+  <div id="fb-root"></div>
+  <script>
+    window.fbAsyncInit = function() {
+      Parse.FacebookUtils.init({
+        appId      : '1497315383844990', // Facebook App ID
+        channelUrl : '//WWW.YOUR_DOMAIN.COM/channel.html', // Channel File
+        cookie     : true, // enable cookies to allow Parse to access the session
+        xfbml      : true  // parse XFBML
+      });
+      login();
+    };
+
+    (function(d, s, id){
+       var js, fjs = d.getElementsByTagName(s)[0];
+       if (d.getElementById(id)) {return;}
+       js = d.createElement(s); js.id = id;
+       js.src = "//connect.facebook.net/en_US/all.js";
+       fjs.parentNode.insertBefore(js, fjs);
+     }(document, 'script', 'facebook-jssdk'));
+  </script>
+  <div id="main">
+    <h1>You're ready to use Parse!</h1>
+
+    <p>Read the documentation and start building your JavaScript app:</p>
+
+    <ul>
+      <li><a href="https://www.parse.com/docs/js_guide">Parse JavaScript Guide</a></li>
+      <li><a href="https://www.parse.com/docs/js">Parse JavaScript API Documentation</a></li>
+    </ul>
+
+    <div style="display:none" class="error">
+      Looks like there was a problem saving the test object. Make sure you've set your application ID and javascript key correctly in the call to <code>Parse.initialize</code> in this file.
+    </div>
+
+    <div style="display:none" class="success">
+      <p>We've also just created your first object using the following code:</p>
+
+        <code>
+          var TestObject = Parse.Object.extend("TestObject");<br/>
+          var testObject = new TestObject();<br/>
+          testObject.save({foo: "bar"});
+        </code>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    Parse.initialize("dWM8tq43dI5aPE8APGrPhsn94QKFFxwU62RmD9nX", "sayNbekoqBssC2lxoMsNXztSZcWcWNmC3OMbj1X1");
+
+    function login() {
+      // facebook login
+      Parse.FacebookUtils.logIn(null, {
+        success: function(user) {
+          if (!user.existed()) {
+            alert("User signed up and logged in through Facebook!");
+          } else {
+            alert("User logged in through Facebook!");
+          }
+        },
+        error: function(user, error) {
+          alert("User cancelled the Facebook login or did not fully authorize.");
+        }
+      });
+    };
+
+    function listOptions() {
+      // 取得所有的選項
+      var q = new Parse.Query("Option");
+      q.find({
+        success: function (results) {
+          alert(JSON.stringify(results));
+        },
+        error: function(error){
+
+        }
+      })
+    }
+
+    function listVoteResults() {
+      var q = new Parse.Query("VoteResult");
+      q.find({
+        success: function(results) {
+          alert(JSON.stringify(results));
+        },
+        error: function(error) {
+
+        }
+      });
+    }
+
+    function addVote(optionId) {
+      // check user is logined
+      if (!Parse.User.current()) {
+        alert("user not login");
+        return;
+      }
+      var Option = Parse.Object.extend("Option");
+      var Vote = Parse.Object.extend("Vote");
+      var q = new Parse.Query(Option);
+
+      q.get(optionId, {
+        success: function(option) {
+          if(!option) {
+            alert("no such option");
+            return;
+          }
+          vote = new Vote();
+          vote.set("option", option);
+          vote.set("candidate", option.get("candidate"));
+          vote.save(null, {
+            success: function(vote) {
+              alert("vote success");
+            },
+            error: function(vote, error) {
+              alert("vote failed" + JSON.stringify(error));
+            }
+          })
+        }
+      });
+    }
+  </script>
+</body>
+
+</html>

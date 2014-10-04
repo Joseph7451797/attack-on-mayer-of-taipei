@@ -1,62 +1,241 @@
-<!doctype html>
-<head>
-  <meta charset="utf-8">
+<!DOCTYPE html>
+<html lang="en">
 
-  <title>My Parse App</title>
-  <meta name="description" content="My Parse App">
-  <meta name="viewport" content="width=device-width">
-  <link rel="stylesheet" href="css/reset.css">
-  <link rel="stylesheet" href="css/styles.css">
-  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>進擊的台北市長</title>
+
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <link href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/jquery-ui.min.js" rel="stylesheet">
+
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/business-frontpage.css" rel="stylesheet">
+
+  <!-- CSS button use -->
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+  <!-- CSS button -->
+  <link rel="stylesheet" href="css/buttons.css">
+
+  <!-- CSS 翻頁 -->
+  <link rel="stylesheet" href="css/kp.css" >
+
+  <!-- CSS lightbox -->
+  <link rel="stylesheet" href="css/lightbox.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+  <script>
+    $(document).ready(function() {
+      var box = $(".candidates .box");
+
+      box.on("click", function() {
+        resetState();
+        $(this).addClass("active");
+
+        $("<div>").addClass("stamp").appendTo($(this).find(".front")).promise().done(function() {
+          var stamp = $(this);
+          setTimeout(function() {
+            stamp.addClass("active");
+          }, 0);
+        });
+      });
+
+      function resetState() {
+        box.removeClass("active");
+        $(".stamp").remove();
+      }
+    });
+  </script>
   <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.2.19.min.js"></script>
 </head>
 
 <body>
-  <div id="fb-root"></div>
-  <script>
-    window.fbAsyncInit = function() {
-      Parse.FacebookUtils.init({
-        appId      : '1497315383844990', // Facebook App ID
-        channelUrl : '//WWW.YOUR_DOMAIN.COM/channel.html', // Channel File
-        cookie     : true, // enable cookies to allow Parse to access the session
-        xfbml      : true  // parse XFBML
-      });
-      login();
-    };
 
-    (function(d, s, id){
-       var js, fjs = d.getElementsByTagName(s)[0];
-       if (d.getElementById(id)) {return;}
-       js = d.createElement(s); js.id = id;
-       js.src = "//connect.facebook.net/en_US/all.js";
-       fjs.parentNode.insertBefore(js, fjs);
-     }(document, 'script', 'facebook-jssdk'));
-  </script>
-  <div id="main">
-    <h1>You're ready to use Parse!</h1>
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <span class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#" style="color:#fff;">進擊的台北市長</a>
+            </span>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#" class="button button-pill button-flat" style="padding-bottom: 30px;">政見PK擂台</a>
+                    </li>
+                    <li>
+                        <a href="#" style="color:#fff; text-align:center;">PK結果統計</a>
+                    </li>
+                </ul>
+          <ul class="nav navbar-nav pull-right">
+          <li><a href="#" style="color:#fff; text-align:center;"><i class="fa fa-facebook"></i>Facebook登入</a></li>
+        </ul>
+      </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
 
-    <p>Read the documentation and start building your JavaScript app:</p>
+    <!-- Image Background Page Header -->
+    <!-- Note: The background image is set within the business-casual.css file. -->
+    <header class="business-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+          <img class="img-circle img-responsive img-center"src="https://1a76929b0082100d586feb065f276d1b6f5959a7.googledrive.com/host/0B8h1srzA_rLXY0hYS192R2dvZ0E/logo-1.png">
+                    <h1 class="tagline" style="text-align: center;">政見PK擂台</h1>
+          <div style="text-align: right;">
+          <h2 class="tagline" style="text-align:center;">Q1:關於OOXX，你支持哪一個政見？</h2>
+          </div>
+                </div>
+            </div>
+        </div>
+    </header>
 
-    <ul>
-      <li><a href="https://www.parse.com/docs/js_guide">Parse JavaScript Guide</a></li>
-      <li><a href="https://www.parse.com/docs/js">Parse JavaScript API Documentation</a></li>
-    </ul>
+    <!-- Page Content -->
+    <div class="container">
+<!--
+        <hr>
 
-    <div style="display:none" class="error">
-      Looks like there was a problem saving the test object. Make sure you've set your application ID and javascript key correctly in the call to <code>Parse.initialize</code> in this file.
+        <div class="row">
+            <div class="col-sm-8">
+                <h2>What We Do</h2>
+                <p>Introduce the visitor to the business using clear, informative text. Use well-targeted keywords within your sentences to make sure search engines can find the business.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et molestiae similique eligendi reiciendis sunt distinctio odit? Quia, neque, ipsa, adipisci quisquam ullam deserunt accusantium illo iste exercitationem nemo voluptates asperiores.</p>
+                <p>
+                    <a class="btn btn-default btn-lg" href="#">Call to Action &raquo;</a>
+                </p>
+            </div>
+            <div class="col-sm-4">
+                <h2>Contact Us</h2>
+                <address>
+                    <strong>Start Bootstrap</strong>
+                    <br>3481 Melrose Place
+                    <br>Beverly Hills, CA 90210
+                    <br>
+                </address>
+                <address>
+                    <abbr title="Phone">P:</abbr>(123) 456-7890
+                    <br>
+                    <abbr title="Email">E:</abbr> <a href="mailto:#">name@example.com</a>
+                </address>
+            </div>
+        </div>
+        <!-- /.row -->
+
+<!--    <hr>   -->
+    <br/>
+        <div class="row candidates">
+            <div class="col-sm-4 box" style="text-align: center;">
+          <!-- <img class="img-circle img-responsive img-center" src="http://placehold.it/300x300" alt=""> -->
+        <div class="front">
+          <h2 id="policy1" style="text-align: center;">政策1</h2>
+          <div class="policytext">政家上我須新的製進會麼市樣給其蘭：天巴天源門的口下股卻。達子次、情賣黃易人開下光拉間什向變經拿足今之腦中童不分洲覺第員訴！係父夫紅，來角什性女國聯明燈響國家發間方，下字兒資家同設少心春明出情進方職行何，告業事歡開；優國於別：如的其我有必長心甚開報心機中方學員已格。
+            <section>
+              <a href="#notice"><div class="more">更多詳情...</div></a>
+            </section>
+          </div>
+          <a href="#"><div class="button button-pill button-flat-primary2" style="margin:15% auto;">我喜歡這個</div></a>
+        </div>
+        <div class="back"><img src="https://1a76929b0082100d586feb065f276d1b6f5959a7.googledrive.com/host/0B8h1srzA_rLXY0hYS192R2dvZ0E/kp-a01.png"/></div>
+      </div>
+            <div class="col-sm-4 policybox" style="text-align: center;">
+                <!-- <img class="img-circle img-responsive img-center" src="http://placehold.it/300x300" alt=""> -->
+                <h2 style="text-align: center;">政策2</h2>
+                <div class="policytext">生大中比人提生朋時夜事年他人著是看相。過組是不就後友要年機她別園。此地於、二信同男安接們，蘭推不下香上者無的的實氣效生次，頭少響服的，原土起，等考自其不了的該際小能相登入夫難者……那統？
+          <div class="more">更多詳情...</div>
+        </div>
+        <div class="button button-pill button-flat-primary2" style="margin:15% auto;">我喜歡這個</div>
+            </div>
+            <div class="col-sm-4 policybox" style="text-align: center;">
+                <!-- <img class="img-circle img-responsive img-center" src="http://placehold.it/300x300" alt=""> -->
+                <h2 style="text-align: center;">政策3</h2>
+                <div class="policytext">到者遊母斯家過之收光話事步會界無可，向係題大裝畫將新力才智……有了對天清相住委；重足元社性類強哥。面代過質如靈書雖個此也，前後大再正代，老體節長上去的。
+          <div class="more">更多詳情...</div>
+        </div>
+        <div class="button button-pill button-flat-primary2" style="margin:15% auto;">我喜歡這個</div>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <hr>
+
+        <!-- Footer -->
+        <footer>
+            <div class="row" style="text-align:center">
+                <div class="button button-pill">
+                    <p style="font-size:20px;">下一題&nbsp;&gt;</p>
+                </div>
+            </div>
+            <!-- /.row -->
+        </footer>
+
     </div>
+    <!-- /.container -->
 
-    <div style="display:none" class="success">
-      <p>We've also just created your first object using the following code:</p>
+  <!-- lightbox -->
+  <div class="lightbox-target" id="notice">
+    <div class="content lightbox-text">
+    點心在以。升林一它但中；製面需未政究教十大步德。一感用活中，詩節理正科、運走不走，因出有所言感給；此物治學高亞毒們或土經才車相門假現得先法情空到就部車增，了車向最腳外：還又必！不人賽工經器即廣在種事只不聽的面系可子玩表主：天看時備家光行驚說巴人計人的黨香了病甚師會起樹病高使一青長黃再條的什在面集的由思。在數車、離美為馬的濟天電取生前熱們亞、我省與期，實只也灣舞後步心目外紅通以相：到外不始。
 
-        <code>
-          var TestObject = Parse.Object.extend("TestObject");<br/>
-          var testObject = new TestObject();<br/>
-          testObject.save({foo: "bar"});
-        </code>
-    </div>
+是住積，英過財政，會建加廣意響感人們，創地使量說？所花狀、歌花人下風我年能全他怎，面眾叫但人之門他的西城後覺所景為不創計量我作小流的望，黨通然型劇動美的重費天。
+
+了色的一相的課？
+
+一爸在老上美在精裡長發老想續開！產更還將。也英兩花臺相性；本教醫便國後易應立大與大的都國機自標？她要因真也證對夫。部動到，除是假病入之安但止企因國要小專問活相特像、愛所的、交土車紙之有感路想八較星家老，點習回海火在上取五中讀縣、坐充充最藥清服球：管著起；汽下家還資有研；想銀做開……用不未空錯然然最表怎腦是理教飛來學想間我評你除他中由我中用百動果，小小部麼，方著住給巴麗高廠港期中兒始，化力感面只晚系；到落候道旅作好夜條在車美都說士；接性北少入界人位標我資老西職大臺民錢不照手我，身花的待有由，新辦心感如但現久服讀在定；在片一可，覺再多易沒部條府、頭間開事外下型；學年界出你過觀母背，小據死是以自的料得天持連兩叫不國家生新放沒壓！
+      <br /><a href="#">Hello World</a></div>
+      <a class="lightbox-close" href="#policy1"></a>
   </div>
 
+    <!-- jQuery Version 1.11.0 -->
+    <script src="js/jquery-1.11.0.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+    <div id="fb-root"></div>
+    <script>
+        window.fbAsyncInit = function() {
+          Parse.FacebookUtils.init({
+            appId      : '1497315383844990', // Facebook App ID
+            channelUrl : '//WWW.YOUR_DOMAIN.COM/channel.html', // Channel File
+            cookie     : true, // enable cookies to allow Parse to access the session
+            xfbml      : true  // parse XFBML
+          });
+          login();
+        };
+
+        (function(d, s, id){
+           var js, fjs = d.getElementsByTagName(s)[0];
+           if (d.getElementById(id)) {return;}
+           js = d.createElement(s); js.id = id;
+           js.src = "//connect.facebook.net/en_US/all.js";
+           fjs.parentNode.insertBefore(js, fjs);
+         }(document, 'script', 'facebook-jssdk'));
+  </script>
   <script type="text/javascript">
     Parse.initialize("dWM8tq43dI5aPE8APGrPhsn94QKFFxwU62RmD9nX", "sayNbekoqBssC2lxoMsNXztSZcWcWNmC3OMbj1X1");
 

@@ -1,0 +1,107 @@
+@charset "UTF-8";
+.lightbox-target {
+  /* 設定好背景層的樣式以及位置 */
+  position: fixed;
+  top: -100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  opacity: 0;
+  /* 預設透明度為 0，觸發 :target 後，利用動畫效果調整透明度 */
+  -webkit-transition: opacity 0.5s ease-in-out;
+  -moz-transition: opacity 0.5s ease-in-out;
+  -o-transition: opacity 0.5s ease-in-out;
+  transition: opacity 0.5s ease-in-out;
+  overflow: hidden;
+  z-index: 2000;
+  /* 當 :target 觸發後，index-target 的透明度為 1；content & img 的寬高為 100% */
+}
+.lightbox-target .content {
+  /* 設定內容的樣式及位置(白底區塊) */
+  width: 60%;
+  height: 60%;
+  background: #fff;
+  color: #333;
+  overflow: auto;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 3px solid #fff;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+  /* 預設寬高為 0，觸發 :target 後，利用動畫效果展開寬與高 */
+  max-height: 0%;
+  max-width: 0%;
+  -webkit-transition: 0.5s ease-in-out;
+  -moz-transition: 0.5s ease-in-out;
+  -o-transition: 0.5s ease-in-out;
+  transition: 0.5s ease-in-out;
+}
+.lightbox-text{
+  margin: 5px 10px 5px 10px;
+}
+.lightbox-target img {
+  /* 設定圖片的樣式及位置，利用 */
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 3px solid #fff;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+  /* 預設寬高為 0，觸發 :target 後，利用動畫效果展開寬與高 */
+  max-height: 0%;
+  max-width: 0%;
+  -webkit-transition: 0.5s ease-in-out;
+  -moz-transition: 0.5s ease-in-out;
+  -o-transition: 0.5s ease-in-out;
+  transition: 0.5s ease-in-out;
+}
+.lightbox-target:target {
+  opacity: 1;
+  top: 0;
+  bottom: 0;
+}
+.lightbox-target:target .content, .lightbox-target:target img {
+  max-height: 100%;
+  max-width: 100%;
+}
+.lightbox-target:target .lightbox-close {
+  top: 5%;
+}
+
+/* 關閉 Lightbox 按鈕的位置及樣式 */
+.lightbox-close {
+  display: block;
+  width: 50px;
+  height: 50px;
+  box-sizing: border-box;
+  background: #66cdaa;
+  color: #fff;
+  position: absolute;
+  top: 60%;
+  right: 5%;
+  -webkit-transition: 0.5s ease-in-out;
+  -moz-transition: 0.5s ease-in-out;
+  -o-transition: 0.5s ease-in-out;
+  transition: 0.5s ease-in-out;
+  /* 利用偽元素做出 \ 以及 / 的線條，合併就變成 X 囉 */
+}
+.lightbox-close:before, .lightbox-close:after {
+  content: " ";
+  display: block;
+  height: 30px;
+  width: 1px;
+  background: #fff;
+  position: absolute;
+  left: 26px;
+  top: 10px;
+  transform: rotate(45deg);
+}
+.lightbox-close:after {
+  transform: rotate(-45deg);
+}

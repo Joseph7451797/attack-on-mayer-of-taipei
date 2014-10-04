@@ -1,0 +1,153 @@
+/* line 3, ../../sass/kp.scss */
+.container {
+  margin-top: 5px;
+}
+.policybox{
+  box-shadow:2px 2px 10px -2px rgba(20%,20%,40%,0.5);
+  -moz-box-shadow:2px 2px 10px -2px rgba(20%,20%,40%,0.5);
+  -webkit-box-shadow:2px 2px 10px -2px rgba(20%,20%,40%,0.5);  
+}
+.policytext{
+  background-color: #dcdcdc;
+  margin:10% aoto;
+  width: 100%;
+  height: 150px;
+  overflow: hidden;
+  line-height: 1.8em;
+  font-size: 18px;
+  text-align: left;
+  cursor: pointer;
+}
+.policytext:hover  .more{ 
+  display: block;
+  font-size: 18px;
+  text-align: center;
+  line-height: 150px;
+} 
+.more{
+  display: none;
+  position: absolute;
+  color: white;
+  top: 60px;
+  width: 92%;
+  height: 150px;
+  background-color: #696969;
+  opacity: 0.8;
+  z-index: 2;
+}
+/* line 7, ../../sass/kp.scss */
+.candidates .box {
+  box-shadow:2px 2px 10px -2px rgba(20%,20%,40%,0.5);
+  -moz-box-shadow:2px 2px 10px -2px rgba(20%,20%,40%,0.5);
+  -webkit-box-shadow:2px 2px 10px -2px rgba(20%,20%,40%,0.5);
+}
+/* line 12, ../../sass/kp.scss */
+.candidates .box .front,
+.candidates .box .back {
+  border: 1px solid black;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.candidates .box .front, 
+.candidates .box .back{
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+/* line 21, ../../sass/kp.scss */
+.candidates .box .front {
+  background-color: #fcf;
+  z-index: 10;
+}
+/* line 25, ../../sass/kp.scss */
+.candidates .box .back {
+  background-color: #cfc;
+  -moz-transform: rotateY(180deg);
+  -ms-transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+}
+/* line 30, ../../sass/kp.scss */
+.candidates .box.active .front,
+.candidates .box.active .back {
+  -moz-transition: all 2s ease 2s;
+  -o-transition: all 2s ease 2s;
+  -webkit-transition: all 2s ease;
+  -webkit-transition-delay: 2s;
+  transition: all 2s ease 2s;
+}
+/* line 35, ../../sass/kp.scss */
+.candidates .box.active .front {
+  -moz-transform: rotateY(180deg);
+  -ms-transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+}
+/* line 38, ../../sass/kp.scss */
+.candidates .box.active .back {
+  -moz-transform: rotateY(360deg);
+  -ms-transform: rotateY(360deg);
+  -webkit-transform: rotateY(360deg);
+  transform: rotateY(360deg);
+}
+
+/* line 43, ../../sass/kp.scss */
+.stamp {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border: 20px solid #C00;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  -moz-transition: -moz-transform 1s ease 0.5s, opacity 1s ease 0.5s;
+  -o-transition: -o-transform 1s ease 0.5s, opacity 1s ease 0.5s;
+  -webkit-transition: -webkit-transform 1s ease 0.5s, opacity 1s ease 0.5s;
+  transition: transform 1s ease 0.5s, opacity 1s ease 0.5s;
+  -moz-transform: rotateZ(15deg) scale(1);
+  -ms-transform: rotateZ(15deg) scale(1);
+  -webkit-transform: rotateZ(15deg) scale(1);
+  transform: rotateZ(15deg) scale(1);
+  -moz-transform-origin: 50% 50% 50%;
+  -ms-transform-origin: 50% 50% 50%;
+  -webkit-transform-origin: 50% 50% 50%;
+  transform-origin: 50% 50% 50%;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  top: 50%;
+  left: 50%;
+  margin-left: -150px;
+  margin-top: -150px;
+  z-index: 20;
+  opacity: 0.5;
+}
+/* line 65, ../../sass/kp.scss */
+.stamp.active {
+  -moz-transform: rotateZ(45deg) scale(0.3);
+  -ms-transform: rotateZ(45deg) scale(0.3);
+  -webkit-transform: rotateZ(45deg) scale(0.3);
+  transform: rotateZ(45deg) scale(0.3);
+  opacity: 1;
+}
+/* line 70, ../../sass/kp.scss */
+.stamp:before {
+  content: " ";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 0;
+  outline: 10px solid #C00;
+}
+/* line 79, ../../sass/kp.scss */
+.stamp:after {
+  content: " ";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  height: 50%;
+  outline: 10px solid #C00;
+}
